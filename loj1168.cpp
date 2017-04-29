@@ -103,29 +103,39 @@ bool check(int N, int pos) {return (bool) (N & (1 << pos));}
 //####################################################################
 //##################Template Ends Here################################
 //####################################################################
-int n, k, x, y, com, mx;
-int visited[maxn], color[maxn];
-vector<int> adj[maxn], revadj[maxn];
-queue<int> stk;
-set<int> se;
+int n, k, x, y, com, node;
+vector<int> adj[1010], revadj[1010], comadj[1010];
+int visited[1010], component[1010], to[1010];
+stack<int> stk;
+
 
 void dfs1(int u)
 {
-        color[u] = 1;
+        visited[u] = 1;
         FORR(i, 0, adj[u].size()){
                 int v = adj[u][i];
-                if(!color[v]) dfs1(v);
+                if(!visited[v]) dfs1(v);
         }
         stk.push(u);
 }
 
 void dfs2(int u)
 {
-        cout << "v " << u << endl;
-        visited[u] = 1;
-        FORR(i, 0, revadj[u].size()){
+        visited[u] = 2;
+        component[u] = com;
+        FORR(i, 0 , revadj[u].size()){
                 int v = revadj[u][i];
-                if(!visited[v]) dfs2(v);
+                if(visited[v] != 2) dfs2(v);
+        }
+}
+
+void dfs3(int u)
+{
+        visited[u] = 3;
+        if(comadj[u].size() > 1) return;
+        FORR(i, 0, comadj[u].size()){
+                int v = comadj[u][i];
+                if(visited[v] != 3) dfs3(v);
         }
 }
 
@@ -139,43 +149,71 @@ int main() {
         scanf("%d", &t);
 
         while(t --){
-                scanf("%d", &n);
-                MSET(visited, 0);
-                MSET(color, 0);
-                se.insert(0);
 
+                MSET(visited, 0);
+                MSET(component, 0);
+                MSET(to, 0);
+
+                scanf("%d", &n);
+                node = 0;
                 FOR(i, 1, n){
                         scanf("%d", &k);
                         FOR(j, 1, k){
                                 scanf("%d %d", &x, &y);
-                                se.insert(x);
-                                se.insert(y);
+                                to[x] = 1;
+                                to[y] = 1;
                                 adj[x].pb(y);
                                 revadj[y].pb(x);
                         }
+                }
 
+                FOR(i, 0, 999){
+                        if(to[i] && !visited[i]) dfs1(i);
                 }
-                for(set<int> :: iterator it = se.begin(); it != se.end(); it ++){
-                        if(!color[*it]) dfs1(*it);
-                }
+
                 com = 0;
+
                 while(!stk.empty()){
-                        int v = stk.front();
+                        int v = stk.top();
                         stk.pop();
-                        cout << v << " " << com <<" " << mx<< endl;
-                        if(!visited[v]){
-                                com ++;
+
+                        if(visited[v] != 2){
+                                ++com;
                                 dfs2(v);
                         }
                 }
-                if(com == 1) printf("Case %d: Yes\n", tt++);
-                else printf("Case %d: No\n", tt++);
 
-                FOR(i, 0, n){
+                FOR(i, 0, 999){
+                        FORR(j, 0, adj[i].size()){
+                                int v = adj[i][j];
+                                if(component[i] != component[v]){
+                                        comadj[component[i]].pb(component[v]);
+                                }
+                        }
+                }
+
+                dfs3(component[0]);
+                bool flag = true;
+
+                FOR(i, 1, com){
+                        if(visited[i] != 3){
+                                flag = false;
+                                break;
+                        }
+                }
+
+                if(flag) printf("Case %d: YES\n", tt++);
+                else printf("Case %d: NO\n", tt++);
+
+                FOR(i, 0, 1000){
                         adj[i].clear();
                         revadj[i].clear();
+                        comadj[i].clear();
                 }
+
+
         }
+
 
         return 0;
 }
