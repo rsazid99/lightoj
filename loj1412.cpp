@@ -1,75 +1,47 @@
+//####################################################################
+//#####In the Name Of Allah,the Most Gracious,the Most Merciful.######
+//####################################################################
+
 #include <bits/stdc++.h>
 using namespace std;
 
+#define maxn            100010
+#define esp             1e-6
+#define mod             1000000007
+#define ll              long long
+#define inf             1061109567
+#define ff  first
+#define ss  second
+
 typedef pair<int, int> ii;
 
-int n, m, x, y, q, visited[100010], sub;
+int Set(int N, int pos) {return N = N | (1 << pos);}
+int reset(int N, int pos) {return N = N & ~ (1 << pos);}
+bool check(ll N, int pos) {return (bool) (N & (1LL << pos));}
+
+int n, m, x, y, q, visited[100010], cnt, tdia;
 vector<int> adj[100010];
-vector<ii> v;
+vector<ii> vec;
 
-ii bfs1(int st)
+
+int dfs(int u, int from)
 {
-        int visited1[100010], level[100010];
-        memset(level, -1, sizeof level);
-        memset(visited1, 0, sizeof visited1);
+        if(!visited[u]) visited[u] = 1, cnt ++;
 
-        queue<int> q;
-        q.push(st);
-        visited1[st] = 1;
-        level[st] = 0;
-        int mx = 0, ret = 0, cnt = 1;
+        int first = 0, second = 0;
 
-        while(!q.empty()){
-                int u = q.front();
-                q.pop();
-
-                if(level[u] > mx){
-                        mx = level[u];
-                        ret = u;
-                }
-
-                for(int i = 0; i < adj[u].size(); i ++){
-                        int v = adj[u][i];
-                        if(visited1[v] || visited[v]) continue;
-                        q.push(v);
-                        visited1[v] = 1;
-                        level[v] = level[u] + 1;
-                        cnt ++;
-                }
+        for(int i = 0; i < adj[u].size(); i ++){
+                int v = adj[u][i];
+                if(v == from) continue;
+                int tmp = dfs(v, u) + 1;
+                if(tmp > first) second = first, first = tmp;
+                else if(tmp > second) second  = tmp;
         }
+        if(first + second > tdia) tdia = first + second;
+        return first;
 
-        sub = max(sub, cnt);
-        return ii(ret, cnt);
 }
 
-int bfs2(int st)
-{
-        int level[100010];
-        memset(level, 0, sizeof level);
-        queue<int> q;
-        q.push(st);
-        visited[st] = 1;
-        level[st] = 0;
-        int mx = 0;
-
-        while(!q.empty()){
-                int u = q.front();
-                q.pop();
-
-                if(level[u] > mx) mx = level[u];
-
-                for(int i = 0; i < adj[u].size(); i ++){
-                        int v = adj[u][i];
-                        if(!visited[v]){
-                                level[v] = 1 + level[u];
-                                visited[v] = 1;
-                                q.push(v);
-                        }
-
-                }
-        }
-        return mx;
-}
 
 int main()
 {
@@ -83,44 +55,46 @@ int main()
 
                 memset(visited, 0, sizeof visited);
 
+
                 for(int i = 1; i <= m; i ++){
                         scanf("%d %d", &x, &y);
                         adj[x].push_back(y);
                         adj[y].push_back(x);
                 }
-                int dia = 0;
-                sub = 0;
+                int dia = 0, sub = 0;
                 for(int i = 1; i <= n; i ++){
                         if(!visited[i]){
-                                ii tmp = bfs1(i);
-                                int tdia = bfs2(tmp.first);
-                                dia  = max(dia , tdia);
-                                v.push_back(ii(tmp.second, dia));
+                                cnt = 0;
+                                tdia = 0;
+                                dfs(i, -1);
+                                sub = max(sub, cnt);
+                                dia = max(dia, tdia);
+                                vec.push_back(ii(cnt, tdia));
                         }
                 }
-                sort(v.begin(), v.end());
+                sort(vec.begin(), vec.end());
+
+
                 scanf("%d", &q);
                 printf("Case %d:\n", tt ++);
                 while(q --){
                         scanf("%d", &x);
                         if(x > sub) printf("impossible\n");
-                        else if(x <= dia + 1){
+                        else if(x - 1 <= dia){
                                 printf("%d\n", x - 1);
                         }
                         else{
-                                int ans = 1e9;
-                                for(int i = 0; i < v.size(); i ++){
-                                        if(v[i].first >= x){
-                                                int di = v[i].second;
-                                                ans = min(ans, di + ((x - di - 1) * 2));
-
-                                        }
+                                int ans = INT_MAX;
+                                int lo = lower_bound(vec.begin(), vec.end(), ii(x, INT_MIN)) - vec.begin();
+                                for(int i = lo; i < vec.size(); i ++){
+                                       ans = min (ans, vec[i].second + 2 * (x - vec[i].second - 1));
                                 }
+
                                 printf("%d\n", ans);
                         }
 
                 }
-                v.clear();
+                vec.clear();
                 for(int i = 1; i <= n; i ++) adj[i].clear();
         }
 
