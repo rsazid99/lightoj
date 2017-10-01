@@ -19,26 +19,26 @@ int Set(int N, int pos) {return N = N | (1 << pos);}
 int reset(int N, int pos) {return N = N & ~ (1 << pos);}
 bool check(ll N, int pos) {return (bool) (N & (1LL << pos));}
 
-int n, m, x, y, ans, ti, dt[10010], visited[10010], low[10010];
+int n, m, x, y, bcc, ti, d[10010], visited[10010], low[10010], bcom[10010], deg[10010];
 vector<int> adj[10010];
 map<int, map<int, int> > ase;
 
 void dfs(int u, int from)
 {
         ti ++;
-        dt[u] = ti;
+        d[u] = ti;
         visited[u] = 1;
-        low[u] = dt[u];
+        low[u] = d[u];
 
         for(int i = 0; i < adj[u].size(); i ++){
                 int v = adj[u][i];
                 if(v == from) continue;
                 else if(visited[v]){
-                        low[u] = min(low[u], dt[v]);
+                        low[u] = min(low[u], d[v]);
                 }
                 else{
                         dfs(v, u);
-                        if(low[v] > dt[u]){
+                        if(low[v] > d[u]){
                                 ase[u][v] = 1;
                                 ase[v][u] = 1;
                         }
@@ -47,20 +47,20 @@ void dfs(int u, int from)
         }
 }
 
-void dfs2(int u, int from, int depth)
+void dfs2(int u, int from)
 {
         visited[u] = 2;
+        bcom[u] = bcc;
         for(int i = 0;i < adj[u].size(); i ++){
                 int v = adj[u][i];
-                if(ase[u][v] || v == from) continue;
-                if(visited[v] == 2){
-                        if((depth + 1) % 2 == 1 && depth > 0){
-                                ans += (depth + 1);
-                        }
+                if(ase[u][v]) continue;
+                if(visited[v] != 2){
+                        dfs2(v, u);
                 }
-                else if(!visited[v] != 2) dfs2(v, u, depth + 1);
         }
 }
+
+
 
 
 int main()
@@ -81,23 +81,38 @@ int main()
                 }
                 ti = 0;
                 memset(visited, 0, sizeof visited);
+                memset(deg, 0, sizeof deg);
 
                 dfs(0, -1);
-                ans = 0;
+                bcc = 0;
                 for(int i = 0; i < n;i ++){
                         if(visited[i] != 2){
-                                dfs2(i, -1, 0);
+                                bcc ++;
+                                dfs2(i, -1);
                         }
                 }
 
 
-                printf("Case %d: %d\n", tt ++, ans);
+                for(int i = 0;i < n; i ++){
+                        for(int j = 0;j < adj[i].size(); j ++){
+                                int v = adj[i][j];
+                                if(bcom[i] != bcom[v]){
+                                        deg[bcom[i]] ++;
+                                        deg[bcom[v]] ++;
+                                }
+                        }
+                }
+                int ans = 0;
+                for(int i = 1; i <= bcc; i ++){
+                        if(deg[i] == 2) ans ++;
+                }
 
-                for(int i = 0; i < n;i ++) adj[i].clear();
+                printf("Case %d: %d\n", tt ++, (ans / 2) + (ans % 2 > 0));
+
+                for(int i = 0; i <= n;i ++) adj[i].clear();
                 ase.clear();
 
         }
 
         return 0;
 }
-

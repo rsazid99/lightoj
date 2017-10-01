@@ -13,13 +13,13 @@ using namespace std;
 #define ff  first
 #define ss  second
 
-typedef pair<int, int> ii;
+typedef pair<ll, int> ii;
 
 int Set(int N, int pos) {return N = N | (1 << pos);}
 int reset(int N, int pos) {return N = N & ~ (1 << pos);}
 bool check(ll N, int pos) {return (bool) (N & (1LL << pos));}
 
-int n, m, x, y, ans, ti, dt[10010], visited[10010], low[10010];
+int n, m, x, y, visited[10010], ti, dt[10010], low[10010], dep[10010], cnt, ans;
 vector<int> adj[10010];
 map<int, map<int, int> > ase;
 
@@ -47,19 +47,21 @@ void dfs(int u, int from)
         }
 }
 
-void dfs2(int u, int from, int depth)
+int dfs2(int u, int from, int depth)
 {
+        dep[u] = depth;
         visited[u] = 2;
-        for(int i = 0;i < adj[u].size(); i ++){
+        cnt ++;
+        int ret = 0;
+        for(int i = 0; i < adj[u].size(); i ++){
                 int v = adj[u][i];
-                if(ase[u][v] || v == from) continue;
-                if(visited[v] == 2){
-                        if((depth + 1) % 2 == 1 && depth > 0){
-                                ans += (depth + 1);
-                        }
+                if(v == from || ase[u][v]) continue;
+                if(visited[v] == 2 && (depth + 1 - dep[v]) % 2 == 1){
+                        ret |= 1;
                 }
-                else if(!visited[v] != 2) dfs2(v, u, depth + 1);
+                else if(visited[v] != 2) ret |= dfs2(v, u, depth + 1);
         }
+        return ret;
 }
 
 
@@ -67,35 +69,38 @@ int main()
 {
         //freopen("input.txt", "r", stdin);
         //freopen("output.txt", "w", stdout);
+
         int t, tt = 1;
         scanf("%d", &t);
 
         while(t --){
-
                 scanf("%d %d", &n, &m);
 
-                for(int i = 0;i < m;i ++){
+                for(int i = 1;i <= m; i ++){
                         scanf("%d %d", &x, &y);
                         adj[x].push_back(y);
                         adj[y].push_back(x);
                 }
-                ti = 0;
-                memset(visited, 0, sizeof visited);
 
-                dfs(0, -1);
+                memset(visited, 0, sizeof visited);
+                ti = 0;
+                for(int i = 0; i < n;i ++){
+                        if(!visited[i]) dfs(i, -1);
+                }
+
                 ans = 0;
+
                 for(int i = 0; i < n;i ++){
                         if(visited[i] != 2){
-                                dfs2(i, -1, 0);
+                                cnt = 0;
+                                int ret = dfs2(i, -1, 0);
+                                if(ret) ans += cnt;
                         }
                 }
 
-
                 printf("Case %d: %d\n", tt ++, ans);
-
                 for(int i = 0; i < n;i ++) adj[i].clear();
                 ase.clear();
-
         }
 
         return 0;
