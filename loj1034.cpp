@@ -103,29 +103,39 @@ bool check(int N, int pos) {return (bool) (N & (1 << pos));}
 //####################################################################
 //##################Template Ends Here################################
 //####################################################################
-int n, m, x, y, com;
-int visited[maxn], color[maxn];
-vector<int> adj[maxn];
+int n, m, x, y, visited[10010], cc, compo[10010];
+vector<int> adj[10010], radj[10010], cadj[10010];
 stack<int> stk;
-
 void dfs1(int u)
 {
-        color[u] = 1;
-        FORR(i, 0, adj[u].size()){
+        visited[u] = 1;
+        for(int i = 0; i < adj[u].size(); i ++){
                 int v = adj[u][i];
-                if(!color[v]) dfs1(v);
+                if(!visited[v]) dfs1(v);
         }
         stk.push(u);
 }
 
 void dfs2(int u)
 {
-        visited[u] = 1;
-        FORR(i, 0, adj[u].size()){
-                int v = adj[u][i];
-                if(!visited[v]) dfs2(v);
+        visited[u] = 2;
+        compo[u] = cc;
+        for(int i = 0; i < radj[u].size(); i ++){
+                int v = radj[u][i];
+                if(visited[v] != 2) dfs2(v);
         }
 }
+
+void dfs3(int u)
+{
+        visited[u] = 3;
+        for(int i = 0; i < cadj[u].size(); i ++){
+                int v = cadj[u][i];
+                if(visited[v] != 3) dfs3(v);
+        }
+
+}
+
 
 int main() {
 
@@ -139,28 +149,47 @@ int main() {
         while(t --){
                 scanf("%d %d", &n, &m);
                 MSET(visited, 0);
-                MSET(color, 0);
+
                 FOR(i, 1, m){
                         scanf("%d %d", &x, &y);
                         adj[x].pb(y);
+                        radj[y].pb(x);
                 }
                 FOR(i, 1 ,n){
-                        if(!color[i]) dfs1(i);
+                        if(!visited[i]) dfs1(i);
                 }
-                com = 0;
+                cc = 0;
                 while(!stk.empty()){
                         int v = stk.top();
                         stk.pop();
 
-                        if(!visited[v]){
-                                com ++;
+                        if(visited[v] != 2){
+                                cc ++;
                                 dfs2(v);
                         }
                 }
-                printf("Case %d: %d\n", tt++, com);
+                for(int i = 1;i <= n;i ++){
+                        for(int j = 0; j < adj[i].size(); j ++){
+                                int v = adj[i][j];
+                                if(compo[i] != compo[v]){
+                                        cadj[compo[i]].push_back(compo[v]);
+                                }
+                        }
+                }
+                int ans = 0;
+                for(int i = 1; i <= cc;i ++){
+                        if(visited[i] != 3){
+                                ans ++;
+                                dfs3(i);
+                        }
+                }
+
+                printf("Case %d: %d\n", tt++, ans);
 
                 FOR(i, 0, n){
                         adj[i].clear();
+                        radj[i].clear();
+                        cadj[i].clear();
                 }
         }
 

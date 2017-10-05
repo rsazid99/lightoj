@@ -186,7 +186,6 @@ int main() {
 
                 }
 
-
                 printf("Case %d: %d\n", tt++, max(in, out));
 
                 FOR(i, 0, n){
