@@ -1,87 +1,300 @@
 Case 1:
-12
-16
-32
-8
-22
-12
-18
-12
-14
-0
-20
-28
-3
-4
-8
+130, 15, 5, 45, 0
+Number of fish expected: 122
 Case 2:
-4
-10
-2
-0
-6
-3
-8
-8
+50, 5
+Number of fish expected: 14
 Case 3:
-11
-13
-25
-1
-9
+10, 0, 15, 0, 5, 20
+Number of fish expected: 111
 Case 4:
-0
-3
-1
-1
-0
-1
-2
-2
-0
-1
-0
-0
-3
+80, 5, 5, 10, 5, 5
+Number of fish expected: 80
 Case 5:
-18
-42
-46
-32
-16
-46
-24
-24
+45, 10
+Number of fish expected: 15
 Case 6:
-0
-0
-0
-0
-0
-0
-0
+190, 30
+Number of fish expected: 39
 Case 7:
-2
-1
+55, 5, 10, 5, 0
+Number of fish expected: 35
 Case 8:
-13
-15
-6
-15
-0
-21
+5, 30, 0, 0
+Number of fish expected: 30
 Case 9:
-32
-16
-38
+160, 10, 5, 5, 5
+Number of fish expected: 59
 Case 10:
-0
-2
-3
-4
-2
-0
-0
-3
-4
-2
+15, 25, 5, 0
+Number of fish expected: 39
+Case 11:
+300, 0
+Number of fish expected: 1020
+Case 12:
+120, 5, 10, 10, 5, 10
+Number of fish expected: 72
+Case 13:
+220, 10, 5, 10
+Number of fish expected: 65
+Case 14:
+35, 10
+Number of fish expected: 33
+Case 15:
+105, 5, 15, 5, 5
+Number of fish expected: 62
+Case 16:
+0, 50
+Number of fish expected: 90
+Case 17:
+75, 15, 10, 5, 5, 5
+Number of fish expected: 83
+Case 18:
+5, 0, 15, 5, 0, 0
+Number of fish expected: 33
+Case 19:
+85, 5, 10, 25, 10
+Number of fish expected: 93
+Case 20:
+230, 5, 10, 5
+Number of fish expected: 84
+Case 21:
+5, 0, 5, 25, 40
+Number of fish expected: 123
+Case 22:
+10, 10, 0, 0, 5, 5
+Number of fish expected: 85
+Case 23:
+130, 10, 5
+Number of fish expected: 42
+Case 24:
+240, 0
+Number of fish expected: 720
+Case 25:
+145, 0, 5, 15, 65
+Number of fish expected: 131
+Case 26:
+5, 5, 10, 165
+Number of fish expected: 245
+Case 27:
+190, 10, 5, 5, 10
+Number of fish expected: 128
+Case 28:
+80, 5, 10
+Number of fish expected: 90
+Case 29:
+100, 5, 20, 5, 15
+Number of fish expected: 60
+Case 30:
+0, 45, 0
+Number of fish expected: 81
+Case 31:
+60, 5, 15, 5, 25, 5
+Number of fish expected: 82
+Case 32:
+210, 20, 30
+Number of fish expected: 160
+Case 33:
+120, 10, 5, 5, 0
+Number of fish expected: 35
+Case 34:
+5, 5, 70, 5, 10, 5
+Number of fish expected: 249
+Case 35:
+195, 10, 10
+Number of fish expected: 58
+Case 36:
+275, 5
+Number of fish expected: 14
+Case 37:
+0, 5, 115, 25, 0, 0
+Number of fish expected: 201
+Case 38:
+5, 0, 75, 0
+Number of fish expected: 229
+Case 39:
+155, 5
+Number of fish expected: 9
+Case 40:
+10, 5, 5, 0, 0, 0
+Number of fish expected: 18
+Case 41:
+20, 5, 5, 0, 0, 0
+Number of fish expected: 21
+Case 42:
+300, 0, 0, 0
+Number of fish expected: 1140
+Case 43:
+245, 5, 5
+Number of fish expected: 92
+Case 44:
+90, 10, 5, 0
+Number of fish expected: 12
+Case 45:
+0, 0, 0, 0, 10, 20
+Number of fish expected: 94
+Case 46:
+135, 5, 10
+Number of fish expected: 53
+Case 47:
+15, 20, 0, 0, 0
+Number of fish expected: 55
+Case 48:
+0, 0, 0, 10, 0
+Number of fish expected: 31
+Case 49:
+5, 15, 5, 0, 0, 0
+Number of fish expected: 33
+Case 50:
+45, 10
+Number of fish expected: 47
+Case 51:
+0, 5, 0, 25, 0, 0
+Number of fish expected: 79
+Case 52:
+75, 5, 20
+Number of fish expected: 50
+Case 53:
+0, 0, 0, 0, 0, 250
+Number of fish expected: 750
+Case 54:
+240, 10, 15
+Number of fish expected: 51
+Case 55:
+120, 65, 5, 5, 5, 5
+Number of fish expected: 120
+Case 56:
+120, 0, 85, 25, 5, 5
+Number of fish expected: 227
+Case 57:
+120, 5, 30
+Number of fish expected: 82
+Case 58:
+100, 10
+Number of fish expected: 37
+Case 59:
+150, 10, 10
+Number of fish expected: 61
+Case 60:
+75, 5, 5
+Number of fish expected: 34
+Case 61:
+300, 0, 0, 0, 0
+Number of fish expected: 220
+Case 62:
+150, 15, 10, 130, 5, 5, 0, 0, 0, 0
+Number of fish expected: 4537
+Case 63:
+110, 5, 10, 5, 0, 0, 0, 0
+Number of fish expected: 2546
+Case 64:
+120, 0, 0, 0, 0, 0, 0
+Number of fish expected: 36
+Case 65:
+385, 15, 5, 0, 0, 0, 0
+Number of fish expected: 2959
+Case 66:
+550, 5, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 655
+Case 67:
+530, 20, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 3260
+Case 68:
+25, 5, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 5059
+Case 69:
+135, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 1585
+Case 70:
+180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 1384
+Case 71:
+90, 5, 25, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 4415
+Case 72:
+25, 5, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 877
+Case 73:
+720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 565
+Case 74:
+10, 90, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 8904
+Case 75:
+480, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 860
+Case 76:
+60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 31
+Case 77:
+295, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 798
+Case 78:
+840, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 213
+Case 79:
+300, 0, 0, 0, 0
+Number of fish expected: 12
+Case 80:
+185, 20, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 3800
+Case 81:
+45, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 383
+Case 82:
+590, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 5066
+Case 83:
+180, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 1893
+Case 84:
+600, 0, 0, 0
+Number of fish expected: 584
+Case 85:
+120, 5, 10, 15
+Number of fish expected: 5770
+Case 86:
+480, 0
+Number of fish expected: 609
+Case 87:
+600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 1200
+Case 88:
+140, 5
+Number of fish expected: 1082
+Case 89:
+355, 110, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 3496
+Case 90:
+300, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 3546
+Case 91:
+240, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 857
+Case 92:
+240, 0, 0
+Number of fish expected: 836
+Case 93:
+320, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 911
+Case 94:
+240, 0, 0, 0
+Number of fish expected: 1025
+Case 95:
+240, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 296
+Case 96:
+405, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 1528
+Case 97:
+40, 10, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 6239
+Case 98:
+330, 10
+Number of fish expected: 717
+Case 99:
+360, 10
+Number of fish expected: 1362
+Case 100:
+180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+Number of fish expected: 8385
